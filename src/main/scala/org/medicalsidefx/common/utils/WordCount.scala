@@ -11,7 +11,7 @@ object WordCount {
       System.exit(1)
     }
 
-    val sconf = new SparkConf().setMaster("local").setAppName("Whatever")
+    val sconf = new SparkConf().setMaster("local").setAppName("MedicalSideFx-ScalaAnalytics")
     val sc = new SparkContext(sconf)
     val file = args(0)
     val counts = sc.textFile(file).
