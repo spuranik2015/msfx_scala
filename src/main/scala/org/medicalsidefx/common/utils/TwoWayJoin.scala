@@ -24,6 +24,10 @@ object TwoWayJoin {
     val file1Rdd = sc.textFile(file1).map(x => (x.split(",")(0), x.split(",")(1)))
     val file2Rdd = sc.textFile(file2).map(x => (x.split(",")(0), x.split(",")(1)))
 
-    file1Rdd.join(file2Rdd).foreach(println)
+    val f1Joinf2 = file1Rdd.join(file2Rdd)
+    f1Joinf2.foreach(println)
+    f1Joinf2.map(x => (x.toString().replace("(","").replace(")","").split(",")(0) + "=" +
+                       x.toString().replace("(","").replace(")","").split(",")(1),
+                       x.toString().replace("(","").replace(")","").split(",")(2))).reduceByKey((v1,v2) => (v1+";"+v2)).foreach(println)
   }
 }
