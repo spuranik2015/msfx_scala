@@ -28,7 +28,7 @@ object TwoWayJoin2 {
 
     val f1Joinf2 = file1RddGrp.join(file2RddGrp)
 
-    file1RddGrp.join(file2RddGrp).toArray().foreach(println)
+    file1RddGrp.join(file2RddGrp).foreach(println)
 
 
 //    file2Rdd.groupByKey().join(file1Rdd.groupByKey()).foreach(line => println(line))
