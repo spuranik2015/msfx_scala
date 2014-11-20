@@ -1,9 +1,6 @@
 package org.medicalsidefx.common.utils
 
-import org.apache.spark.SparkContext
-import org.apache.spark.SparkContext._
-import org.apache.spark.SparkConf
-import org.apache.spark.sql._
+import org.apache.spark.{SparkConf, SparkContext}
 
 /**
  * Created by sansub01 on 11/19/14.
