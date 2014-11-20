@@ -12,7 +12,6 @@ object PageCounts {
 
     val sconf = new SparkConf().setMaster("local").setAppName("MedicalSideFx-PageCounts")
     val sc = new SparkContext(sconf)
-
     val pagecounts = sc.textFile("/Users/sansub01/mycode/knowledge/spark_ampcamp_2014/data/pagecounts")
     pagecounts.take(10)
     pagecounts.take(10).foreach(println)
