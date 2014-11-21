@@ -17,8 +17,8 @@ object WordCount {
     val counts = sc.textFile(file).
       flatMap(line => line.split("\\W")).
       map(word => (word,1)).
-      reduceByKey((v1,v2) => v1+v2)
+      reduceByKey((v1,v2) => v1+v2).foreach(println)
 
-    counts.take(10).foreach(println)
+//    counts.take(10).foreach(println)
   }
 }
