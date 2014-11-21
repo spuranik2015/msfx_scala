@@ -30,11 +30,12 @@ object TwoWayJoin2 {
     val file2RddGrp = file2Rdd.groupByKey().map
     { case (k,v) => (k,v.toArray) } // map(x:ArrayBuffer[String] => x.toArray())
   //  val file1RddGrp = file1Rdd.groupByKey()
+  */
 
     val f1Joinf2 = file1RddGrp.join(file2RddGrp)
 
     file1Rdd.join(file2RddGrp).collect().foreach(println)
-
+/*
 //    file2Rdd.groupByKey().join(file1Rdd.groupByKey()).foreach(line => println(line))
 //    file1Rdd.groupByKey().join(file2Rdd.groupByKey()).foreach(line => println(line))
 */
