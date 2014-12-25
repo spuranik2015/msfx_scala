@@ -31,17 +31,16 @@ object ColumnExtractor {
       }
       if (outFile != null) {
         try {
-          var demoRddFilter = demoRdd.filter(line => !line.contains("ISR$CASE$I_F_COD$FOLL_SEQ") || !line.contains("primaryid$caseid$caseversion"))
-          var demoRddFilterMap = demoRddFilter.map(line => {
+          var demoRddMap = demoRdd.map(line => {
             var tokens = line.split('$')
-            if (tokens.length >= 13){
+            if (tokens.length >= 13 && !line.contains("ISR$CASE$I_F_COD$FOLL_SEQ") && !line.contains("primaryid$caseid$caseversion")){
               tokens(0) + "\t" + tokens(5) + "\t" + tokens(11) + "\t" + tokens(12)
             }
             else {
-              println("Error Record " + line)
+                 ""
             }
           })
-          demoRddFilterMap.saveAsTextFile("/data/aers/msfx/demo/" + outFile)
+          demoRddMap.saveAsTextFile("/data/aers/msfx/demo/" + outFile)
           println("SUCCESSFUL "+a.toString)
         }
         catch {
