@@ -18,25 +18,11 @@ object ColumnExtractor {
 
   val demoList = List(demohdrV1,demohdrV2,demohdrV3,demohdrV4,demohdrV5)
 
-//  val demohdrErr = List("/data/aers/quarterly_files/aers_ascii_2009q3/ascii/demo/DEMO09Q3.TXT")
-
-//  val demoList = List(demohdrErr)
   var outFile = ""
 
   for (b <- demoList) {
     for (a <- b) {
       var demoRdd = sc.textFile(a)
-      /*
-      demoRdd.foreach(line => {
-        try {
-          println(line)
-          line.split('$')(0) + "~" + line.split('$')(5) + "~" + line.split('$')(11) + "~" + line.split('$')(12)
-        }
-        catch{
-          case e: Exception => println(line.toString + " - Exception")
-        }
-      })
-      */
       try {
         outFile = a.reverse.split('/')(0).split('.')(1).reverse
       }
@@ -47,8 +33,9 @@ object ColumnExtractor {
         try {
           var demoRddFilter = demoRdd.filter(line => !line.contains("ISR$CASE$I_F_COD$FOLL_SEQ") || !line.contains("primaryid$caseid$caseversion"))
           var demoRddFilterMap = demoRddFilter.map(line => {
-            if (line.split('$').length >= 13){
-              line.split('$')(0) + "~" + line.split('$')(5) + "~" + line.split('$')(11) + "~" + line.split('$')(12)
+            var tokens = line.split('$')
+            if (tokens.length >= 13){
+              tokens(0) + "\t" + tokens(5) + "\t" + tokens(11) + "\t" + tokens(12)
             }
             else {
               println("Error Record " + line)
@@ -56,11 +43,9 @@ object ColumnExtractor {
           })
           demoRddFilterMap.saveAsTextFile("/data/aers/msfx/demo/" + outFile)
           println("SUCCESSFUL "+a.toString)
-          Thread sleep 1000
         }
         catch {
           case e: Exception => println("FAILED "+a.toString)
-            Thread sleep 1000
         }
       }
     }
