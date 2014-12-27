@@ -5,9 +5,9 @@ import org.apache.spark.{SparkConf, SparkContext}
 /**
  * Created by sanjay on 12/23/14.
  */
-object ColumnExtractor {
+object AersReacColumnExtractor {
 
-  val sconf = new SparkConf().setMaster("local").setAppName("MedicalSideFx-NamesFoodSql")
+  val sconf = new SparkConf().setMaster("local").setAppName("MedicalSideFx-AersReacColumnExtractor")
   val sc = new SparkContext(sconf)
 
   val demohdrV1 =  List("/data/aers/quarterly_files/aers_ascii_1999q1/ascii/demo/DEMO99Q1.TXT", "/data/aers/quarterly_files/aers_ascii_1999q2/ascii/demo/DEMO99Q2.TXT", "/data/aers/quarterly_files/aers_ascii_1999q3/ascii/demo/DEMO99Q3.TXT", "/data/aers/quarterly_files/aers_ascii_1999q4/ascii/demo/DEMO99Q4.TXT", "/data/aers/quarterly_files/aers_ascii_2000q1/ascii/demo/demo00q1.txt", "/data/aers/quarterly_files/aers_ascii_2000q2/ascii/demo/demo00q2.txt", "/data/aers/quarterly_files/aers_ascii_2000q3/ascii/demo/demo00q3.txt", "/data/aers/quarterly_files/aers_ascii_2000q4/ascii/demo/demo00q4.txt", "/data/aers/quarterly_files/aers_ascii_2001q1/ascii/demo/demo01q1.txt", "/data/aers/quarterly_files/aers_ascii_2001q2/ascii/demo/demo01q2.txt", "/data/aers/quarterly_files/aers_ascii_2001q3/ascii/demo/demo01q3.txt", "/data/aers/quarterly_files/aers_ascii_2001q4/ascii/demo/demo01q4.txt", "/data/aers/quarterly_files/aers_ascii_2002q1/ascii/demo/demo02q1.txt")
