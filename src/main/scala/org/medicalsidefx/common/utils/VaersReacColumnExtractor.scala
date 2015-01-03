@@ -28,14 +28,12 @@ object VaersReacColumnExtractor {
               try {
                 reacRdd.map(line => line.split(',')).map(fields => {
                   if (fields.length >= 10 && !fields(0).contains("VAERS_ID")) {
-//                    (fields(0),(fields(0)+","+fields(1)+"\t"+fields(0)+","+fields(3)+"\t"+fields(0)+","+fields(5)+"\t"+fields(0)+","+fields(7)+"\t"+fields(0)+","+fields(9)))
-                    ((fields(0)+","+fields(1)+"\t"+fields(0)+","+fields(3)+"\t"+fields(0)+","+fields(5)+"\t"+fields(0)+","+fields(7)+"\t"+fields(0)+","+fields(9)))
+                    ((fields(0)+"\t"+fields(1)+","+fields(0)+"\t"+fields(3)+","+fields(0)+"\t"+fields(5)+","+fields(0)+"\t"+fields(7)+","+fields(0)+"\t"+fields(9)))
                   }
                   else {
                     ("")
                   }
-                }).flatMap(str => str.split('\t')).filter(line => line.toString.length() > 0).saveAsTextFile("/data/vaers/msfx/reac/" + outFile)
-//              }).flatMap(str => str._2.split('\t')).filter(line => line.toString.length() > 0).saveAsTextFile("/data/vaers/msfx/reac/" + outFile)
+                }).flatMap(str => str.split(',')).filter(line => line.toString.length() > 0).saveAsTextFile("/data/vaers/msfx/reac/" + outFile)
                 println("SUCCESSFUL " + a.toString)
               }
               catch {
