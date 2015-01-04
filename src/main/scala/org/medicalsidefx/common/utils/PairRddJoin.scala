@@ -37,6 +37,6 @@ object PairRddJoin {
 
     val rdd1InvIndex = sc.textFile(rdd1).map(x => (x.split('~')(0), x.split('~')(1))).flatMapValues(str => str.split(',')).map(str => (str._2, str._1))
     val rdd2Pair = sc.textFile(rdd2).map(str => (str.split('~')(0), str.split('~')(1)))
-    rdd1InvIndex.join(rdd2Pair).map(str => str._2).groupByKey().collect().foreach(println)
+    rdd1InvIndex.join(rdd2Pair).map(str => str._2).groupByKey().map(str => (str._1,str._2.toList)).collect().foreach(println)
   }
 }
