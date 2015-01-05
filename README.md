@@ -1,4 +1,4 @@
 msfx_scala
 ==========
 
-Scala based adverse events analytics
+Scala and Apache Spark based adverse events analytics
